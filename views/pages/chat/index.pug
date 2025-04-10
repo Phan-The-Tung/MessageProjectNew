@@ -3,6 +3,7 @@ include ../../mixins/box-head.pug
 
 block main 
     .container.my-3
+
         include ../../partials/list-btn-users.pug
 
         .row 
@@ -11,7 +12,10 @@ block main
 
         .row 
             .col-12 
-                .chat(my-id)
+                .chat(my-id=user.id)
+                    //- .inner-head 
+                    //-     .inner-avatar EY 
+                    //-     .inner-name Em yêu 
                     .inner-body
                         each chat in chats
                             div(class=chat.infoUser.id == user.id ? "inner-outgoing": "inner-incoming")
@@ -20,6 +24,13 @@ block main
                                 .inner-content
                                     | #{chat.content}
                         div(class="inner-list-typing")
+
+                            //- div(class="box-typing")
+                            //-     div(class="inner-name") Lê Văn B
+                            //-     div(class="inner-dots")
+                            //-         span 
+                            //-         span 
+                            //-         span
 
                     .inner-foot
                         form(
@@ -43,4 +54,4 @@ block main
             emoji-picker(class="light")
 
     block script 
-        script(type="module" src="/js/chat.js")   
+        script(type="module" src="/js/chat.js")       

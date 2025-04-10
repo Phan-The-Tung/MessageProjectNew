@@ -17,3 +17,30 @@ if (formMessage) {
     });
 }
 // End CLIENT_SEND_MESSAGE
+
+// SERVER_RETURN_MESSAGE
+socket.on("SERVER_RETURN_MESSAGE", (data) => {
+  const myId = document.querySelector("[my-id]").getAttribute("my-id");
+
+  const body = document.querySelector(".chat .inner-body");
+  const div = document.createElement("div");
+  const boxTyping = document.querySelector(".chat .inner-list-typing");
+
+  let htmlFullname = "";
+
+  if (myId == data.userId) {
+    div.classList.add("inner-outgoing");
+  } else {
+    div.classList.add("inner-incoming");
+    htmlFullname = `<div class="inner-name">${data.fullName}</div>`;
+  }
+  div.innerHTML = `
+    ${htmlFullname}
+    <div class="inner-content">${data.content}</div>
+  `;
+
+  body.insertBefore(div, boxTyping);
+
+  body.scrollTop = body.scrollHeight;
+});
+// End SERVER_RETURN_MESSAGE
