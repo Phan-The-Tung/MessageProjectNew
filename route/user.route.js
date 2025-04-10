@@ -21,4 +21,6 @@ router.get("/info", controller.info);
 
 router.get("/edit", controller.edit);
 
+router.patch("/edit", controller.editPatch);
+
 module.exports = router;
