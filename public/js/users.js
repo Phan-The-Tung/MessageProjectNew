@@ -37,3 +37,11 @@ const refuseFriend = (button) => {
   };
 // End Function từ chối lời mời kết bạn
 
+// Chức năng từ chối lời mời kết bạn
+const listBtnRefuseFriend = document.querySelectorAll("[btn-refuse-friend]");
+if (listBtnRefuseFriend.length > 0) {
+  listBtnRefuseFriend.forEach((button) => {
+    refuseFriend(button);
+  });
+}
+// End Chức năng từ chối lời mời kết bạn
