@@ -1,19 +1,19 @@
 header.header
     .container 
         .row.align-items-center
-            .col-2
+            .col-4
                 .inner-logo 
                     a(href="/")
                         img(src="/images/logo.jpg", alt="Logo")
 
-            .col-7
+            .col-8
                 .inner-menu 
                     ul  
                         if (user)
                             li 
                                 a(href="/chat") Chat
-                            li 
-                                a(href="/info") #{user.fullName}
+                            li
+                                a(href="/info" style='margin-right: 10px') #{user.fullName}
                                 a(href="/logout") Đăng xuất
                         else 
                             li 
