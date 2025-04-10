@@ -17,4 +17,6 @@ router.get("/password/forgot", controller.forgot);
 
 router.get("/logout", controller.logout);
 
+router.get("/info", controller.info);
+
 module.exports = router;

@@ -1,0 +1,29 @@
+extends ../../layouts/default.pug
+include ../../mixins/box-head.pug
+
+block main 
+    .container.my-3 
+        .row 
+            .col-12
+                +box-head(pageTitle)
+
+        img(
+            src=user.avatar ? user.avatar : "/images/avatar.png"
+            width="150px"
+            class="mb-3"
+            alt=user.fullName
+        )
+
+        if (user.fullName)
+            p Họ tên: <b>#{user.fullName}</b>
+
+        if (user.email)
+            p Email: <b>#{user.email}</b>  
+
+
+        p Số điện thoại: <b>#{user.phone}</b> 
+
+        a(
+            href=`/user/edit`
+            class="btn btn-primary"
+        ) Chỉnh sửa thông tin

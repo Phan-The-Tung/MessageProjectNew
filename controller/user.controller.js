@@ -104,3 +104,13 @@ module.exports.logout = async (req, res) => {
 
   res.redirect(`/`);
 }
+
+// [GET] /password/info
+module.exports.info = async (req, res) => {
+  const user = await User.findOne({tokenUser: req.cookies.tokenUser});
+
+  res.render("pages/user/info.pug", {
+    pageTitle: "Thông tin cá nhân",
+    user: user,
+  })
+}
