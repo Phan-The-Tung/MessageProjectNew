@@ -9,15 +9,15 @@ header.header
             .col-7
                 .inner-menu 
                     ul  
-                        li 
-                                a(href="/") Chat
-                        //- if (user)
-                        //-     li 
-                        //-         a(href="/user/info") #{user.fullName}
-                        //-         a(href="/user/logout") Đăng xuất
-                        //- else 
-                        li 
-                            a(href="/user/login") Đăng nhập
-                        li 
-                            a(href="/user/register") Đăng ký
+                        if (user)
+                            li 
+                                a(href="/chat") Chat
+                            li 
+                                a(href="/info") #{user.fullName}
+                                a(href="/logout") Đăng xuất
+                        else 
+                            li 
+                                a(href="/") Đăng nhập
+                            li 
+                                a(href="/register") Đăng ký
                         

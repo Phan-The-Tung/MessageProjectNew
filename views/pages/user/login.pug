@@ -10,7 +10,7 @@ block main
             .col-8
                 h1(class="text-center") #{pageTitle}
                 form(
-                    action="/user/login"
+                    action="/login"
                     method="POST"
                 )
                     div(class="form-group")
@@ -38,6 +38,6 @@ block main
                             class="btn btn-success"
                         ) Đăng nhập
             
-                a(href=`/user/password/forgot`) Quên mật khẩu?
+                a(href=`/password/forgot`) Quên mật khẩu?
 
                     

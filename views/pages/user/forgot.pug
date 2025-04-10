@@ -1,0 +1,32 @@
+extends ../../layouts/default.pug
+include ../../mixins/alert.pug
+
+block main 
+    +alert-success(5000)
+    +alert-error(5000)
+
+    .container.my-5
+        .row.justify-content-center 
+            .col-8
+                h1(class="text-center") #{pageTitle}
+                form(
+                    action="/user/password/forgot"
+                    method="POST"
+                )
+                    div(class="form-group")
+                        label(for="email") Email
+                        input(
+                            type="email"
+                            class="form-control"
+                            id="email"
+                            name="email"
+                            require
+                        )
+
+                    div(class="form-group")
+                        button(
+                            type="submit"
+                            class="form-control"
+                            class="btn btn-success"
+                        ) Gửi email xác nhận
+            
