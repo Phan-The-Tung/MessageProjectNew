@@ -19,4 +19,6 @@ router.get("/logout", controller.logout);
 
 router.get("/info", controller.info);
 
+router.get("/edit", controller.edit);
+
 module.exports = router;
