@@ -13,3 +13,10 @@ module.exports.loginPost = (req, res) => {
     console.log(req.body)
     res.send("Oke");
 };
+
+// [GET] /user/register
+module.exports.register = (req, res) => {
+    res.render("pages/user/register.pug", {
+        pageTitle: "Đăng ký"
+    });
+};
