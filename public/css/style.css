@@ -1,39 +1,647 @@
 /* Header */
 .header {
-    border-bottom: 1px solid #ddd;
-    padding: 10px 0;
+  border-bottom: 1px solid #ddd;
+  padding: 10px 0;
+}
+
+.header .inner-logo img {
+  max-height: 50px;
+  max-width: 100%;
+}
+
+.header .inner-menu > ul {
+  list-style: none;
+  padding: 0;
+  margin: 0;
+  display: flex;
+  align-items: center;
+  justify-content: flex-end;
+  flex-wrap: wrap;
+}
+
+.header .inner-menu > ul > li {
+  margin-left: 20px;
+}
+
+.header .inner-menu ul li a {
+  text-decoration: none;
+  color: black;
+}
+/* End Header */
+
+/* Footer */
+.footer {
+  background-color: #333;
+  color: #fff;
+  text-align: center;
+  padding: 10px;
+}
+/* End Footer */
+
+/* box-head */
+.box-head {
+  margin-bottom: 30px;
+}
+
+.box-head .inner-title {
+  margin-bottom: 0;
+  font-size: 28px;
+  font-weight: 600;
+  color: green;
+}
+/* end box-head */
+
+/* product-item */
+.product-item {
+  border: 1px solid #ddd;
+  border-radius: 8px;
+  overflow: hidden;
+}
+
+.product-item .inner-image {
+  width: 100%;
+  aspect-ratio: 4/3;
+  border-bottom: 1px solid #ddd;
+  position: relative;
+}
+
+.product-item .inner-image img {
+  width: 100%;
+  height: 100%;
+  object-fit: cover;
+}
+
+.product-item .inner-featured {
+  position: absolute;
+  top: 10px;
+  right: 10px;
+  background-color: green;
+  color: white;
+  padding: 3px 9px;
+  font-weight: 600;
+  font-size: 14px;
+  border-radius: 8px;
+}
+
+.product-item .inner-content {
+  padding: 15px;
+}
+
+.product-item .inner-content .inner-title {
+  font-size: 20px;
+  font-weight: 600;
+}
+
+.product-item .inner-content .inner-price-new {
+  font-size: 28px;
+  font-weight: 600;
+  color: green;
+}
+
+.product-item .inner-content .inner-price-old {
+  font-size: 18px;
+  font-weight: 600;
+  color: red;
+  text-decoration: line-through;
+}
+
+.product-item .inner-content .inner-discount {
+  font-size: 14px;
+  font-weight: 600;
+  color: white;
+  background-color: red;
+  display: inline-block;
+  padding: 3px 10px;
+  border-radius: 8px;
+  margin-top: 10px;
+}
+/* End product-item */
+
+/* sub-menu */
+.sub-menu {
+  position: relative;
+  z-index: 999;
+}
+
+.sub-menu ul {
+  position: absolute;
+  right: 0;
+  top: 100%;
+  list-style: none;
+  padding: 0;
+  margin: 0;
+  background: #eae9e9;
+  min-width: 180px;
+  display: none;
+}
+
+.sub-menu ul li {
+  padding: 10px;
+  border-bottom: 1px solid #ddd;
+}
+
+.sub-menu:hover > ul {
+  display: block;
+}
+
+.sub-menu ul li {
+  position: relative;
+}
+
+.sub-menu ul li ul {
+  right: 100%;
+  top: 0;
+}
+
+.sub-menu ul li:hover > ul {
+  display: block;
+}
+/* End sub-menu */
+
+/* product-detail */
+.product-detail .inner-thumb img {
+  width: 100%;
+  height: auto;
+}
+
+.product-detail .inner-title {
+  font-size: 32px;
+  margin-bottom: 15px;
+}
+
+.product-detail .inner-category {
+  margin-bottom: 10px;
+}
+
+.product-detail .inner-price-new {
+  color: green;
+  font-weight: 600;
+  font-size: 48px;
+}
+
+.product-detail .inner-price {
+  color: red;
+  font-weight: 600;
+  font-size: 24px;
+  text-decoration: line-through;
+  margin-bottom: 10px;
+}
+
+.product-detail .inner-percent span {
+  background-color: red;
+  color: white;
+  padding: 2px 8px;
+  border-radius: 20px;
+  font-weight: 600;
+}
+
+.product-detail .inner-percent {
+  margin-bottom: 10px;
+}
+
+.product-detail .inner-stock {
+  margin-bottom: 15px;
+}
+
+.product-detail .inner-stock span {
+  background-color: green;
+  color: white;
+  padding: 2px 10px;
+  border-radius: 20px;
+  font-weight: 600;
+}
+
+.product-detail .inner-category a {
+  text-decoration: none;
+  color: black;
+  font-weight: 600;
+}
+
+.product-detail .inner-category a:hover {
+  color: green;
+}
+/* End product-detail */
+
+/* Show alert */
+[show-alert] {
+  position: fixed;
+  top: 70px;
+  right: 15px;
+  z-index: 9999;
+}
+
+[show-alert].alert-hidden {
+  animation-name: alert-hidden;
+  animation-duration: 0.5s;
+  animation-fill-mode: both;
+}
+
+@keyframes alert-hidden {
+  form {
+    right: 15px;
   }
-  
-  .header .inner-logo img {
-    max-height: 50px;
-    max-width: 100%;
+  to {
+    right: -100%;
+    display: none;
   }
-  
-  .header .inner-menu > ul {
-    list-style: none;
-    padding: 0;
-    margin: 0;
-    display: flex;
-    align-items: center;
-    justify-content: flex-end;
-    flex-wrap: wrap;
+}
+
+[show-alert] [close-alert] {
+  background-color: #ffffffc4;
+  display: inline-block;
+  width: 24px;
+  height: 24px;
+  line-height: 24px;
+  text-align: center;
+  font-weight: 600;
+  border-radius: 50%;
+  cursor: pointer;
+}
+/* End show alert */
+
+/* Chat */
+/* General Chat Container */
+.chat {
+  max-width: 400px;
+  margin: auto;
+  background: #f7f7f7;
+  border-radius: 10px;
+  padding: 10px;
+  box-shadow: 0px 2px 10px rgba(0, 0, 0, 0.1);
+
+  min-height: 600px;
+  display: flex;
+  flex-direction: column;
+  justify-content: space-between;
+}
+
+/* Message Styling */
+/* General Chat Container */
+.chat {
+  max-width: 400px;
+  margin: auto;
+  background: #f7f7f7;
+  border-radius: 10px;
+  padding: 10px;
+  box-shadow: 0px 2px 10px rgba(0, 0, 0, 0.1);
+}
+
+/* Message Styling */
+.inner-body {
+  display: flex;
+  flex-direction: column;
+  gap: 10px;
+  padding: 10px;
+  max-height: 500px; /* Giới hạn chiều cao của khung chat */
+  overflow-y: auto; /* Cho phép cuộn khi nội dung quá dài */
+  scrollbar-width: thin; /* Làm thanh cuộn nhỏ hơn */
+  scrollbar-color: #ff69b4 #f0f0f0; /* Màu thanh cuộn */
+}
+
+/* Ẩn thanh cuộn trên Chrome, Edge, Safari */
+.inner-body::-webkit-scrollbar {
+  width: 6px;
+}
+
+.inner-body::-webkit-scrollbar-thumb {
+  background-color: #ff69b4;
+  border-radius: 10px;
+}
+
+.inner-body::-webkit-scrollbar-track {
+  background-color: #f0f0f0;
+}
+
+.inner-incoming,
+.inner-outgoing {
+  display: flex;
+  align-items: flex-start;
+  max-width: 75%;
+}
+
+.inner-incoming {
+  align-self: flex-start;
+  flex-direction: column;
+}
+
+.inner-outgoing {
+  align-self: flex-end;
+  flex-direction: column;
+  background: #ff69b4;
+  color: white;
+  border-radius: 15px;
+  padding: 10px 15px;
+}
+
+.inner-incoming .inner-content {
+  background: #ffffff;
+  border-radius: 15px;
+  padding: 10px 15px;
+  box-shadow: 0px 2px 5px rgba(0, 0, 0, 0.1);
+}
+
+.inner-name {
+  font-size: 12px;
+  font-weight: bold;
+  color: #555;
+  margin-bottom: 5px;
+}
+
+/* Input Section */
+.inner-foot {
+  display: flex;
+  align-items: center;
+  border-top: 1px solid #ddd;
+  padding: 10px;
+}
+
+.inner-foot form {
+  display: flex;
+  width: 100%;
+  align-items: center;
+}
+
+.inner-foot input {
+  flex: 9;
+  min-height: 40px; /* Chiều cao tối thiểu */
+  max-height: 150px; /* Chiều cao tối đa */
+  padding: 10px;
+  border: none;
+  border-radius: 20px;
+  outline: none;
+  resize: none; /* Không cho phép thay đổi kích thước bằng tay */
+  overflow-y: auto; /* Hiển thị thanh cuộn khi nội dung quá dài */
+  word-wrap: break-word; /* Tự động xuống dòng */
+  white-space: pre-wrap; /* Đảm bảo xuống dòng khi nhập nhiều */
+}
+
+/* Tạo thanh cuộn mỏng cho ô nhập */
+.inner-foot input::-webkit-scrollbar {
+  width: 6px;
+}
+
+.inner-foot input::-webkit-scrollbar-thumb {
+  background-color: #ff69b4;
+  border-radius: 10px;
+}
+
+.inner-foot input::-webkit-scrollbar-track {
+  background-color: #f0f0f0;
+}
+
+.inner-foot button {
+  flex: 1;
+  background: #ff69b4;
+  color: white;
+  border: none;
+  border-radius: 50%;
+  width: 40px;
+  height: 40px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  margin-left: 10px;
+  cursor: pointer;
+}
+/* End chat */
+
+.tooltip {
+  visibility: hidden;
+}
+.tooltip.shown {
+  visibility: visible;
+  opacity: 1;
+}
+
+/* Typing */
+.inner-list-typing {
+  margin-top: 10px;
+}
+
+.box-typing {
+  display: flex;
+  flex-direction: column; /* Để inner-dots nằm dưới inner-name */
+  align-items: flex-start;
+  margin-bottom: 10px;
+}
+
+.inner-name {
+  font-weight: bold;
+  margin-bottom: 4px;
+}
+
+.inner-dots {
+  display: flex;
+  gap: 4px;
+}
+
+.inner-dots span {
+  width: 5px;
+  height: 5px;
+  background-color: #ff69b4; /* Màu hồng */
+  border-radius: 50%;
+  animation: blink 1.4s infinite;
+}
+
+.inner-dots span:nth-child(2) {
+  animation-delay: 0.2s;
+}
+
+.inner-dots span:nth-child(3) {
+  animation-delay: 0.4s;
+}
+
+@keyframes blink {
+  0%,
+  80%,
+  100% {
+    opacity: 0.2;
+    transform: scale(1);
   }
-  
-  .header .inner-menu > ul > li {
-    margin-left: 20px;
+  40% {
+    opacity: 1;
+    transform: scale(1.4);
   }
-  
-  .header .inner-menu ul li a {
-    text-decoration: none;
-    color: black;
-  }
-  /* End Header */
-  
-  /* Footer */
-  .footer {
-    background-color: #333;
-    color: #fff;
-    text-align: center;
-    padding: 10px;
-  }
-  /* End Footer */
+}
+
+/* End Typing */
+
+/* Info user */
+.box-user {
+  display: flex;
+  align-items: flex-start;
+  position: relative; /* Cho phép định vị phần tử con tuyệt đối */
+  background: #ffffff;
+  padding: 10px 15px;
+  border-radius: 8px;
+  max-width: 300px;
+  min-height: 80px; /* Đảm bảo có chiều cao để đặt nút dưới */
+  box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1);
+}
+
+.inner-avatar img {
+  width: 50px;
+  height: 50px;
+  border-radius: 50%;
+  object-fit: cover;
+  margin-right: 10px;
+}
+
+.inner-info {
+  flex: 1;
+  display: flex;
+  flex-direction: column;
+  justify-content: flex-start;
+  padding-right: 80px; /* Chừa chỗ cho nút ở góc phải */
+}
+
+.inner-name {
+  font-weight: bold;
+  font-size: 12px;
+  color: black;
+}
+
+.inner-button {
+  position: absolute;
+  right: 10px;
+  bottom: 10px;
+  display: flex;
+  gap: 5px;
+}
+
+.inner-button .btn-primary {
+  padding: 2px 10px;
+  font-size: 12px;
+  border-radius: 4px;
+}
+
+.inner-button .btn-primary:nth-child(1) {
+  background-color: #007bff;
+  border-color: #007bff;
+  color: white;
+}
+
+.inner-button .btn-primary:nth-child(2) {
+  background-color: #e2e5e9;
+  border-color: #e2e5e9;
+  color: black;
+}
+
+/* Mặc định ẩn nút "Hủy" */
+.box-user [btn-cancel-friend] {
+  display: none;
+}
+
+/* Khi có class add: ẩn "Kết bạn", hiện "Hủy" */
+.box-user.add [btn-add-friend] {
+  display: none;
+}
+
+.box-user.add [btn-cancel-friend] {
+  display: inline-block;
+}
+
+.box-user [btn-deleted-friend] {
+  display: none;
+}
+
+.box-user.refuse [btn-accept-friend] {
+  display: none;
+}
+
+.box-user.refuse [btn-refuse-friend] {
+  display: none;
+}
+
+.box-user.refuse [btn-deleted-friend] {
+  display: inline-block;
+}
+
+.box-user [btn-accepted-friend] {
+  display: none;
+}
+
+.box-user.accepted [btn-accept-friend] {
+  display: none;
+}
+
+.box-user.accepted [btn-refuse-friend] {
+  display: none;
+}
+
+.box-user.accepted [btn-accepted-friend] {
+  display: inline-block;
+}
+
+.box-user .inner-status {
+  font-size: 12px;
+  color: #00d800;
+  opacity: 0;
+}
+
+.box-user .inner-status[status="online"] {
+  opacity: 1;
+}
+/* End info user */
+
+/* Image Preview */
+.image-preview {
+  width: 150px;
+  height: auto;
+  margin-top: 15px;
+  border: 1px solid #ddd;
+  padding: 10px;
+  border-radius: 5px;
+}
+
+.image-preview[src=""] {
+  display: none;
+}
+
+.image-container {
+  position: relative;
+  display: inline-block;
+}
+
+.image-preview {
+  max-width: 100%;
+  height: auto;
+  display: block;
+}
+
+.close-image {
+  position: absolute;
+  top: 20px;
+  right: 5px;
+  background: rgba(0, 0, 0, 0.7);
+  color: white;
+  border-radius: 50%;
+  width: 20px;
+  height: 20px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  cursor: pointer;
+  font-size: 15px;
+}
+
+/* End Image Preview */
+
+/* Badge */
+.position-relative {
+  position: relative;
+}
+.position-absolute {
+  position: absolute;
+}
+.top-0 {
+  top: 0;
+}
+.start-100 {
+  left: 100%;
+}
+.translate-middle {
+  transform: translate(-50%, -50%);
+}
+
+/* End Badge */
