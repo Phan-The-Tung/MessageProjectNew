@@ -72,7 +72,7 @@ module.exports.accept = async (req, res) => {
     deleted: false,
   }).select("avatar fullName");
 
-  res.render("client/pages/users/accept.pug", {
+  res.render("/pages/users/accept.pug", {
     pageTitle: "Lời mời kết bạn",
     users: users,
   });
