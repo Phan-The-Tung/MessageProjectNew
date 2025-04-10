@@ -59,7 +59,7 @@ const acceptFriend = (button) => {
   
 // Chức năng chấp nhận lời mời kết bạn
 const listBtnAcceptFriend = document.querySelectorAll("[btn-accept-friend]");
-    if (listBtnAcceptFriend.length > 0) {
+if (listBtnAcceptFriend.length > 0) {
     listBtnAcceptFriend.forEach((button) => {
         acceptFriend(button);
     });
@@ -165,13 +165,13 @@ socket.on("SERVER_RETURN_USER_ID_CANCEL_FRIEND", (data) => {
   };
 // End Funciton status online/offline
   
-  // SERVER_RETURN_USER_ONLINE
+// SERVER_RETURN_USER_ONLINE
 socket.on("SERVER_RETURN_USER_ONLINE", (userId) => {
     statusOnlineOffline("online", userId);
 });
-  // End SERVER_RETURN_USER_ONLINE
+// End SERVER_RETURN_USER_ONLINE
   
-  // SERVER_RETURN_USER_OFFLINE
+// SERVER_RETURN_USER_OFFLINE
 socket.on("SERVER_RETURN_USER_OFFLINE", (userId) => {
     statusOnlineOffline("offline", userId);
 });
