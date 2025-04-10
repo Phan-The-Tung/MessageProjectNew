@@ -4,14 +4,14 @@ const User = require("../model/user.model");
 
 // [GET] /
 module.exports.login = (req, res) => {
-    res.render("pages/user/login.pug", {
-        pageTitle: "Đăng nhập"
-    });
+  res.render("pages/user/login.pug", {
+    pageTitle: "Đăng nhập"
+  });
 };
 
 // [POST] /
 module.exports.loginPost = async (req, res) => {
-    const email = req.body.email;
+  const email = req.body.email;
   const password = req.body.password;
 
   const user = await User.findOne({ email: email, deleted: false });
@@ -44,41 +44,41 @@ module.exports.loginPost = async (req, res) => {
   });
 
   // Khi đăng nhập thành công lưu user_id vào collection carts
-//   await Cart.updateOne({ _id: req.cookies.cartId }, { user_id: user.id });
+  //   await Cart.updateOne({ _id: req.cookies.cartId }, { user_id: user.id });
 
   res.redirect(`/chat`);
 };
 
 // [GET] /register
 module.exports.register = (req, res) => {
-    res.render("pages/user/register.pug", {
-        pageTitle: "Đăng ký"
-    });
+  res.render("pages/user/register.pug", {
+    pageTitle: "Đăng ký"
+  });
 };
 
 // [POST] /register
 module.exports.registerPost = async (req, res) => {
-    const existEmail = await User.findOne({
-        email: req.body.email,
-        deleted: false,
-    });
+  const existEmail = await User.findOne({
+    email: req.body.email,
+    deleted: false,
+  });
 
-    if (existEmail) {
-        req.flash("error", `Email ${req.body.email} đã tồn tại !`);
-        res.redirect("back");
-        return;
-    }
+  if (existEmail) {
+    req.flash("error", `Email ${req.body.email} đã tồn tại !`);
+    res.redirect("back");
+    return;
+  }
 
-    req.body.password = md5(req.body.password);
+  req.body.password = md5(req.body.password);
 
-    delete req.body.rePassword;
+  delete req.body.rePassword;
 
-    const user = new User(req.body);
-    await user.save();
+  const user = new User(req.body);
+  await user.save();
 
-    res.cookie("tokenUser", user.tokenUser);
+  res.cookie("tokenUser", user.tokenUser);
 
-    res.redirect("/");
+  res.redirect("/chat");
 };
 
 // [GET] /password/forgot
@@ -88,33 +88,19 @@ module.exports.forgot = async (req, res) => {
   });
 }
 
-// [POST] /password/forgotPost
-module.exports.forgot = async (req, res) => {
-  const email = req.body.email;
-  const user = await User.findOne({ email: email, deleted: false });
+// [GET] /password/logout
+module.exports.logout = async (req, res) => {
+  // Cập nhật trạng thái offline khi user đăng xuất
+  await User.updateOne(
+    { _id: res.locals.user.id },
+    { statusOnline: "offline" }
+  );
 
-  if (!user) {
-    req.flash("error", `Email ${email} không tồn tại !`);
-    res.redirect(`back`);
-    return;
-  }
+  _io.once("connection", (socket) => {
+    socket.broadcast.emit("SERVER_RETURN_USER_OFFLINE", res.locals.user.id);
+  });
 
-  // Việc 1: Tạo mã OTP và lưu OTP, email và collection forgot-password
-  const otp = generateHelper.generateRandomNumber(8);
+  res.clearCookie("tokenUser");
 
-  const objectForgot = {
-    email: email,
-    otp: otp,
-    expireAt: Date.now(),
-  };
-
-  const forgotPassword = new ForgotPassword(objectForgot);
-  await forgotPassword.save();
-
-  // Việc 2: Gửi mã otp qua email của user
-  const subject = "Mã OTP để xác minh lấy lại mật khẩu";
-  const html = `Mã OTP xác minh lấy lại mật khẩu là: <b>${otp}</b>. Thời hạn sử dụng là 3 phút. Lưu ý, không được để lộ mã OTP`;
-  sendMailerHelper.sendMail(email, subject, html);
-
-  res.redirect(`/user/password/otp?email=${email}`);
+  res.redirect(`/`);
 }

@@ -15,6 +15,6 @@ router.post('/register', registerMiddleware.registerPost , controller.registerPo
 
 router.get("/password/forgot", controller.forgot);
 
-router.post("/password/forgot",registerMiddleware.forgotPasswordPost , controller.forgotPost);
+router.get("/logout", controller.logout);
 
 module.exports = router;
