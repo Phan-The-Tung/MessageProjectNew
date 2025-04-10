@@ -28,6 +28,6 @@ module.exports.registerPost = (req, res) => {
     const email = req.body.email;
     const password = md5(req.body.password);
     const fullName = req.body.fullName;
-    // console.log(`${email} - ${password} - ${fullName}`);
+    console.log(`${email} - ${password} - ${fullName}`);
     res.send("Oke");
 };

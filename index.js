@@ -19,6 +19,8 @@ app.use(session({ cookie: { maxAge: 60000 } }));
 app.use(flash());
 // End flash
 
+const database = require("./config/database.js");
+
 const route = require("./route/index.route");
 
 // Static files
@@ -28,6 +30,9 @@ app.use(express.static('public'));
 app.set('views', './views');
 app.set('view engine', 'pug');
 // End Template engine
+
+// connect database
+database.connect();
 
 route(app);
 
