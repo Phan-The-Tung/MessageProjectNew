@@ -2,9 +2,16 @@ const express = require('express');
 const flash = require('express-flash');
 const cookieParser = require("cookie-parser");
 const session = require("express-session");
+const bodyParser = require('body-parser');
+const methodOverride = require("method-override");
 
 const app = express();
 const port = 3000;
+
+app.use(methodOverride("_method"));
+
+// create application/x-www-form-urlencoded parser
+app.use(bodyParser.urlencoded({ extended: false }));
 
 // flash
 app.use(cookieParser("ANHQUANCODER"));
