@@ -5,8 +5,8 @@ div(class="row")
         a(class="btn btn-success m-1", href="/users/request") Lời mời đã gửi
         a(class="btn btn-success m-1 position-relative", href="/users/accept")
             | Lời mời kết bạn
-            //- span(
-            //-     class="badge badge-light position-absolute top-0 start-100 translate-middle"
-            //-     style="z-index: 1;"
-            //-     badge-users-accept=
-            //- ) #{user.acceptFriends.length}
+            span(
+                class="badge badge-light position-absolute top-0 start-100 translate-middle"
+                style="z-index: 1;"
+                badge-users-accept=user.id
+            ) #{user.acceptFriends.length}
