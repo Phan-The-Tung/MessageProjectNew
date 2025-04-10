@@ -35,4 +35,5 @@ const refuseFriend = (button) => {
       socket.emit("CLIENT_REFUSE_FRIEND", userId);
     });
   };
-  // End Function từ chối lời mời kết bạn
+// End Function từ chối lời mời kết bạn
+
