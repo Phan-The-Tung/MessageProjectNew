@@ -1,3 +1,6 @@
+const usersSocket = require("../sockets/users.socket");
+const User = require("../model/user.model");
+
 // [GET] users/not-friend
 module.exports.notFriend = async (req, res) => {
     // Socket
