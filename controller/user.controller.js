@@ -1,5 +1,7 @@
 const md5 = require('md5');
 
+const User = require("../model/user.model");
+
 // [GET] /user/login
 module.exports.login = (req, res) => {
     res.render("pages/user/login.pug", {
@@ -24,10 +26,26 @@ module.exports.register = (req, res) => {
 };
 
 // [POST] /user/register
-module.exports.registerPost = (req, res) => {
-    const email = req.body.email;
-    const password = md5(req.body.password);
-    const fullName = req.body.fullName;
-    console.log(`${email} - ${password} - ${fullName}`);
-    res.send("Oke");
+module.exports.registerPost = async (req, res) => {
+    const existEmail = await User.findOne({
+        email: req.body.email,
+        deleted: false,
+    });
+
+    if (existEmail) {
+        req.flash("error", `Email ${req.body.email} đã tồn tại !`);
+        res.redirect("back");
+        return;
+    }
+
+    req.body.password = md5(req.body.password);
+
+    delete req.body.rePassword;
+
+    const user = new User(req.body);
+    await user.save();
+
+    res.cookie("tokenUser", user.tokenUser);
+
+    res.redirect("/");
 };
