@@ -10,12 +10,43 @@ module.exports.login = (req, res) => {
 };
 
 // [POST] //user/login
-module.exports.loginPost = (req, res) => {
-    // const email = req.body.email;
-    // const password = req.body.password;
+module.exports.loginPost = async (req, res) => {
+    const email = req.body.email;
+  const password = req.body.password;
 
-    console.log(req.body)
-    res.send("Oke");
+  const user = await User.findOne({ email: email, deleted: false });
+
+  if (!user) {
+    req.flash("error", `Email ${email} không tồn tại !`);
+    res.redirect(`back`);
+    return;
+  }
+
+  if (md5(password) != user.password) {
+    req.flash("error", `Sai mật khẩu, vui lòng thử lại !`);
+    res.redirect(`back`);
+    return;
+  }
+
+  if (user.status == "inactive") {
+    req.flash("error", `Tài khoản của bạn đã bị khóa !`);
+    res.redirect(`back`);
+    return;
+  }
+
+  res.cookie("tokenUser", user.tokenUser);
+
+  // Cập nhật trạng thái online khi đăng nhập thành công của user
+  await User.updateOne({ _id: user.id }, { statusOnline: "online" });
+
+  _io.once("connection", (socket) => {
+    socket.broadcast.emit("SERVER_RETURN_USER_ONLINE", user.id);
+  });
+
+  // Khi đăng nhập thành công lưu user_id vào collection carts
+//   await Cart.updateOne({ _id: req.cookies.cartId }, { user_id: user.id });
+
+  res.redirect(`/`);
 };
 
 // [GET] /user/register

@@ -4,6 +4,8 @@ const cookieParser = require("cookie-parser");
 const session = require("express-session");
 const bodyParser = require('body-parser');
 const methodOverride = require("method-override");
+const http = require('http');
+const { Server } = require("socket.io");
 
 const app = express();
 const port = 3000;
@@ -12,6 +14,12 @@ app.use(methodOverride("_method"));
 
 // create application/x-www-form-urlencoded parser
 app.use(bodyParser.urlencoded({ extended: false }));
+
+// SocketIO
+const server = http.createServer(app);
+const io = new Server(server);
+global._io = io;
+// End SocketIO
 
 // flash
 app.use(cookieParser("ANHQUANCODER"));
