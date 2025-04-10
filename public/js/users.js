@@ -135,3 +135,46 @@ if (dataUsersNotFriend) {
 }});
 // End Trang danh sách người dùng
 // End SERVER_RETURN_INFO_ACCEPT_FRIEND
+
+
+
+// SERVER_RETURN_USER_ID_CANCEL_FRIEND
+socket.on("SERVER_RETURN_USER_ID_CANCEL_FRIEND", (data) => {
+    const dataUsersAccept = document.querySelector("[data-users-accept]");
+    const userId = dataUsersAccept.getAttribute("data-users-accept");
+  
+    if (userId == data.userId) {
+      // Xóa A khỏi danh sách của B
+      const boxUserRemove = dataUsersAccept.querySelector(
+        `[user-id="${data.userIdA}"]`
+      );
+      if (boxUserRemove) {
+        dataUsersAccept.removeChild(boxUserRemove);
+      }
+    }
+});
+// End SERVER_RETURN_USER_ID_CANCEL_FRIEND
+  
+// Funciton status online/offline
+  const statusOnlineOffline = (status, userId) => {
+    const dataUsersFriend = document.querySelector("[data-users-friend]");
+    if (dataUsersFriend) {
+      const boxUser = dataUsersFriend.querySelector(`[user-id="${userId}"]`);
+      if (boxUser) {
+        boxUser.querySelector("[status]").setAttribute("status", status);
+      }
+    }
+  };
+// End Funciton status online/offline
+  
+  // SERVER_RETURN_USER_ONLINE
+socket.on("SERVER_RETURN_USER_ONLINE", (userId) => {
+    statusOnlineOffline("online", userId);
+});
+  // End SERVER_RETURN_USER_ONLINE
+  
+  // SERVER_RETURN_USER_OFFLINE
+socket.on("SERVER_RETURN_USER_OFFLINE", (userId) => {
+    statusOnlineOffline("offline", userId);
+});
+// End SERVER_RETURN_USER_OFFLINE
