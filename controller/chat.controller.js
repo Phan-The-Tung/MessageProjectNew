@@ -4,7 +4,7 @@ const User = require("../model/user.model");
 // [GET] /
 module.exports.index = async (req, res) => {
 
-    const userId = res.locals.user.id;
+    // const userId = res.locals.user.id;
     const fullName = res.locals.user.fullName;
 
     // SocketIO
